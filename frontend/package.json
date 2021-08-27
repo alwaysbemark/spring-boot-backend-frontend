@@ -1,0 +1,10 @@
+{
+  "name": "Example",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "echo Built!",
+    "check": "echo Checked!",
+    "clean": "echo Cleaned!"
+  }
+}

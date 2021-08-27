@@ -1,0 +1,28 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    builtFrontend
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    builtFrontend project(path: ':frontend', configuration: 'builtFrontend')
+
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+}
+
+task processFrontendResources(type: Copy) {
+    from configurations.builtFrontend
+    into "${project.buildDir}/resources/main/static"
+}
+processResources.dependsOn processFrontendResources
